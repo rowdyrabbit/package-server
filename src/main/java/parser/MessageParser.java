@@ -52,7 +52,7 @@ public class MessageParser {
 
     private static void throwExceptionIfContainsInvalidChars(String str, String label) throws InvalidMessageFormatException {
         // Legal chars = 0-9, A-B, a-b, -, +, _
-        String legalRegex = "^[a-zA-Z0-9-_+]+$";
+        String legalRegex = "^[a-zA-Z0-9-_+]*$";
         Pattern pattern = Pattern.compile(legalRegex);
         Matcher matcher = pattern.matcher(str);
         boolean legalChars =  matcher.find();

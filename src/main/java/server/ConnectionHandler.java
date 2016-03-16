@@ -3,6 +3,8 @@ package server;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import protocol.MessageHandler;
+import protocol.ResponseCode;
 import repository.Repository;
 
 import java.io.BufferedReader;
@@ -33,7 +35,8 @@ class ConnectionHandler implements Runnable {
             String inputLine;
 
             while ((inputLine = in.readLine()) != null) {
-                out.println("OK");
+                ResponseCode response = MessageHandler.handle(repo, inputLine);
+                out.println(response);
             }
 
         } catch (IOException ioe) {
