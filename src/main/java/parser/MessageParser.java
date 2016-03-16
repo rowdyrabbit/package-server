@@ -33,6 +33,10 @@ public class MessageParser {
 
     private static List<String> validateDependecies(String component) throws InvalidMessageFormatException {
         List<String> dependencies = new ArrayList<>();
+        if (component.isEmpty()) {
+            return dependencies;
+        }
+
         String[] deps = component.split(",");
         for (String dep: deps) {
             throwExceptionIfContainsInvalidChars(dep, "Dependency name");

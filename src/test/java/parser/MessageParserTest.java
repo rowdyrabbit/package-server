@@ -2,6 +2,9 @@ package parser;
 
 import org.junit.Test;
 
+import java.util.Collections;
+
+import static java.util.Collections.EMPTY_LIST;
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 import static parser.Command.INDEX;
@@ -48,6 +51,15 @@ public class MessageParserTest {
         assertThat(msg.command, is(INDEX));
         assertThat(msg.packageName, is("git"));
         assertThat(msg.dependencies.toArray(), is(new String[]{"libc", "libuv"}));
+    }
+
+    @Test
+    public void shouldParseValidMessageWithoutDeps() throws InvalidMessageFormatException {
+        String message = "INDEX|avce00|";
+        Message msg = parseMessage(message);
+        assertThat(msg.command, is(INDEX));
+        assertThat(msg.packageName, is("avce00"));
+        assertThat(msg.dependencies, is(EMPTY_LIST));
     }
 
 }
