@@ -18,9 +18,9 @@ public class PackageServer implements Runnable {
     private final ExecutorService pool;
     private final Repository repo;
 
-    public PackageServer(int portNumber, int poolSize, Repository repository) throws IOException {
+    public PackageServer(int portNumber, Repository repository) throws IOException {
         serverSocket = new ServerSocket(portNumber);
-        pool = Executors.newFixedThreadPool(poolSize);
+        pool = Executors.newCachedThreadPool();
         repo = repository;
     }
 

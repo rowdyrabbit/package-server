@@ -13,7 +13,7 @@ public class Main {
         Repository repo = new Repository();
 
         try {
-            new Thread(new PackageServer(8080, 200, repo)).start();
+            new Thread(new PackageServer(8080, repo)).start();
         } catch (IOException ioe) {
             logger.error("Could not start server", ioe);
             ioe.printStackTrace();

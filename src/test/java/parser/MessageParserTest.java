@@ -2,8 +2,6 @@ package parser;
 
 import org.junit.Test;
 
-import java.util.Collections;
-
 import static java.util.Collections.EMPTY_LIST;
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
