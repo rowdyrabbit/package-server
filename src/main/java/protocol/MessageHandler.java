@@ -3,21 +3,17 @@ package protocol;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import parser.Command;
 import parser.InvalidMessageFormatException;
 import parser.Message;
 import parser.MessageParser;
 import repository.Repository;
 
 import static parser.Command.*;
-import static protocol.ResponseCode.ERROR;
-import static protocol.ResponseCode.FAIL;
-import static protocol.ResponseCode.OK;
+import static protocol.ResponseCode.*;
 
 public class MessageHandler {
 
     private static final Logger logger = LoggerFactory.getLogger(MessageHandler.class);
-
 
 
     public static ResponseCode handle(Repository repo, String message) {
@@ -27,7 +23,7 @@ public class MessageHandler {
             Message msg = MessageParser.parseMessage(message);
 
             if (msg.command == INDEX) {
-                logger.debug(String.format("Calling INDEX function with package name: %s", msg.packageName));
+                logger.debug(String.format("Calling INDEX function with package name: %s and dependencies %s", msg.packageName, msg.dependencies));
                 success = repo.addPackage(msg.packageName, msg.dependencies);
             } else if (msg.command == QUERY) {
                 logger.debug(String.format("Calling QUERY function with package name: %s", msg.packageName));

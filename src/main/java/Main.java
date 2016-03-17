@@ -8,12 +8,14 @@ import java.io.IOException;
 public class Main {
 
     private static final Logger logger = LoggerFactory.getLogger(Main.class);
+    private static final int PORT = 8080;
 
     public static void main(String[] args) {
         Repository repo = new Repository();
 
         try {
-            new Thread(new PackageServer(8080, repo)).start();
+            new Thread(new PackageServer(PORT, repo)).start();
+            logger.info(String.format("Server running on port %d", PORT));
         } catch (IOException ioe) {
             logger.error("Could not start server", ioe);
             ioe.printStackTrace();
