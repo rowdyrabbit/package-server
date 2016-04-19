@@ -1,4 +1,4 @@
-Digital Ocean Assignment
+Dependency Repository Server
 ========================
 
 Design Rationale
